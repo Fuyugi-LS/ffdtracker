@@ -1,0 +1,15 @@
+# Compiled library
+libfdtracker.a
+*.a
+
+# Compiled test program
+a.out
+
+# Intermediate object files
+*.o
+
+# VSCode editor files
+.vscode/
+
+# macOS system files
+.DS_Store
