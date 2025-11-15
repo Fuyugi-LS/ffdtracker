@@ -1,5 +1,4 @@
 <div align="center">
- 
 # ✨ libfdtracker ✨
 A robust, lightweight, and Valgrind-approved file descriptor tracker in C.
 <p>
@@ -14,33 +13,34 @@ Tired of hunting down file descriptor leaks? libfdtracker is a simple, norminett
 
 This project provides a simple API to register, close, and manage opened file descriptors, complete with robust error handling for edge cases like buffer overflows or trying to track too many FDs.
 
-🔮 Core Features
-🛡️ Leak-Proof: 100% clean reports from valgrind --track-fds=all.
-✍️ Norminette Compliant: Passes all norminette checks for clean, compliant C code.
-🚀 Lightweight & Fast: Designed with performance in mind. A simple, static array tracks all FDs.
-🎛️ Granular Control: Includes functions to close all tracked FDs (fd_close_all) or only specific ones (fd_close_partial).
-💥 Robust Error Handling: Built-in checks for buffer overflow (fd_perror) and invalid configuration.
+# 🔮 Core Features
+- Leak-Proof: 100% clean reports from valgrind --track-fds=all.
+- Norminette Compliant: Passes all norminette checks for clean, compliant C code.
+- Lightweight & Fast: Designed with performance in mind. A simple, static array tracks all FDs.
+- Granular Control: Includes functions to close all tracked FDs (fd_close_all) or only specific ones (fd_close_partial).
+- Robust Error Handling: Built-in checks for buffer overflow (fd_perror) and invalid configuration.
 
 ⚙️ Installation & Usage
 1. Build the Library  
 A Makefile is included to compile all source files into a static library (.a file).
-
+```
 # Compile all .c files into .o files and archive them into the library
 make
-
+```
 This will create libfdtracker.a in the root directory.
 
 2. Link Against Your Project
-
+```
 # Example: Compiling a test program named 'basic.c'
 # -Isrc tells the compiler where to find the headers
 # -L. tells the compiler to look for libraries in the current directory
 # -lfdtracker links the 'libfdtracker.a' library
 cc -Wall -Wextra -Werror basic.c -Isrc -L. -lfdtracker -o my_program
+```
 
 3. Use in Your Code  
 Include the memtracker.h header in your C files to use the tracker's functions.
-
+```
  /* basic.c */
  #include "memtracker.h" // Your header (fdtracker.h)
  #include <fcntl.h>
@@ -62,23 +62,24 @@ Include the memtracker.h header in your C files to use the tracker's functions.
      fd_close_all();
      return (0);
  }
+```
 
-💎 API Reference
+# 💎 API Reference
 
-void fd_register(size_t size, int fd, ...);  
+`void fd_register(size_t size, int fd, ...);`  
 Registers one or more file descriptors to the memory tracker.  
 @size: The total number of FDs to be registered.  
 @fd: The first file descriptor to register.  
 @...: The subsequent (size - 1) FDs to register.
 
-void fd_close_all(void);  
+`void fd_close_all(void);`
 Closes all tracked file descriptors. It iterates through the entire tracker, calls close() on every valid FD, and clears its slot.
 
-void fd_close_partial(size_t size, int fd, ...);  
+`void fd_close_partial(size_t size, int fd, ...);`  
 Closes one or more specific file descriptors from the tracker.  
 @size: The total number of FDs to be closed.  
 @fd: The first FD to find and close.  
 @...: The subsequent (size - 1) FDs to find and close.
 
-LICENSE  
+# LICENSE
 MIT License. For detailed information, read LICENSE.md
