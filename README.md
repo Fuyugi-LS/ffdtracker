@@ -1,4 +1,4 @@
-<div align="center">✨ libfdtracker ✨
+<div align="center"># ✨ libfdtracker ✨
 A robust, lightweight, and Valgrind-approved file descriptor tracker in C.
 <p>
 <img src="https://img.shields.io/badge/Norme-42_Compliant-blue?style=flat&logo=42" alt="Norminette Compliant">
